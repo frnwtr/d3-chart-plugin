@@ -1,0 +1,46 @@
+body {
+	font-family: "brandon-grotesque", "Brandon Grotesque", sans-serif;
+}
+
+line, path {
+	stroke: black;
+	fill: none;
+	shape-rendering: geometricPrecision;
+	stroke-width: 4;
+}
+
+.yaxis path,
+.yaxis line {
+    display: none;
+}
+
+.yaxis text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.yaxisline {
+	stroke-width: 3;
+	shape-rendering: crispEdges;
+}
+
+.label {
+	font: 10px;
+	font-weight: bold;
+	fill: black;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 900px;
+}
+.clear:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.floating {
+	float: left;
+	margin: 10px;
+}
