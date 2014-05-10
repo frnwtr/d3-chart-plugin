@@ -34,7 +34,7 @@ function makeGraph(name, dataset) {
         .attr("y", 0)
         .attr("width", w)
         .attr("height", h)
-        .attr("fill", jQuery.inArray(0, dataset) === -1 ? 'white' : 'red')
+        .attr("fill", "white")
         .attr("stroke", "black")
         .attr("stroke-width", "6px");
 
@@ -78,10 +78,6 @@ function makeGraph(name, dataset) {
         .text(name);
 };
 
-makeGraph("NUMBER OF USERS (IN MILLIONS)", [10, 0, 0, 40, 30, 7, 8, 9]);
-makeGraph("THE APDEX IS OFF THE ROOF", [40, 10, 10, 20, 90]);
-displayNum("SO MUCH APDEX", 0.9);
-
 function displayNum(name, dataset) {
     var w = 400;
     var h = 375;
@@ -108,7 +104,7 @@ function displayNum(name, dataset) {
         .attr("y", h - 250 / 2)
         .attr("font-size", "100")
         .attr("font-weight", "lighter")
-        .attr("fill", (dataset < 0.9) ? "white" : "black")
+        .attr("fill", "black")
         .style("text-anchor", "middle")
         .text(dataset);
     
@@ -119,3 +115,7 @@ function displayNum(name, dataset) {
         .style("text-anchor", "middle")
         .text(name);
 };
+
+// makeGraph("NUMBER OF USERS (IN MILLIONS)", [10, 0, 0, 40, 30, 7, 8, 9]);
+// makeGraph("THE APDEX IS OFF THE ROOF", [40, 10, 10, 20, 90]);
+// displayNum("SO MUCH APDEX", 0.9);
