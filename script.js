@@ -1,7 +1,7 @@
-function makeGraph(name, dataset) {
-    var w = 400;
-    var h = 375;
-    var padding = 50;
+function makeLineGraph(name, dataset) {
+    var w = 400; //width
+    var h = 375; //height
+    var padding = 50; //padding inside the svg container
     
     var xScale = d3.scale.linear()
         .domain([0, d3.max(dataset)])
@@ -14,11 +14,11 @@ function makeGraph(name, dataset) {
     var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("left")
-        .ticks(5)
-        .tickSize(0)
-        .tickPadding(10);
+        .ticks(5) //roughly how many numbers in the y axis? (d3 will give around that number)
+        .tickSize(0) //increase tick size to create visible ticks in the yAxis
+        .tickPadding(10); //how far to the left the numbers are from the yAxis
     
-    var line = d3.svg.line()
+    var line = d3.svg.line() //this function plots the line graph
         .x(function(d, i) { return (i + 1) * (w / (dataset.length + 1)) + 22; })
         .y(function(d) { return yScale(d); });
     
@@ -32,13 +32,13 @@ function makeGraph(name, dataset) {
     var rect = svg.append("rect")
         .attr("x", 0)
         .attr("y", 0)
-        .attr("width", w)
+        .attr("width", w) //this is the border box
         .attr("height", h)
-        .attr("fill", "white")
-        .attr("stroke", "black")
-        .attr("stroke-width", "6px");
+        .attr("fill", "white") //change the fill
+        .attr("stroke", "black") //and the stroke
+        .attr("stroke-width", "6px"); //and how thick the stroke is
 
-    var lines = svg.append("path")
+    var lines = svg.append("path") //creates the line graph. delete this to delete the connected lines.
           .datum(dataset)
           .attr("class", "line")
           .attr("d", line);
@@ -53,25 +53,26 @@ function makeGraph(name, dataset) {
         .attr("cy", function(d) {
             return yScale(d);
         })
-        .attr("r", 5)
-        .attr("fill", "white")
-        .attr("stroke", "rgb(16,78,109)")
-        .attr("stroke-width", "3px");
+        .attr("r", 5) //change size of circle by setting radius (r)
+        .attr("fill", "white") //change fill
+        .attr("stroke", "rgb(16,78,109)") //change stroke color
+        .attr("stroke-width", "3px"); // change thickness of stroke
     
     //Y Axis
     svg.append("g")
         .attr("class", "yaxis")
         .attr("transform", "translate(" + padding + ", 0)")
         .call(yAxis);
-    svg.append("line")
-        .attr("class", "yaxisline")
-        .attr("x1", padding)
-        .attr("y1", padding)
-        .attr("x2", padding)
-        .attr("y2", h - padding);
+    
+    svg.append("line") //I replaced the default yAxis with my custom line 
+        .attr("class", "yaxisline") //style the custom line in the css .yaxisline {}
+        .attr("x1", padding) //starting x value
+        .attr("y1", 0) //starting y value
+        .attr("x2", padding) //ending x value
+        .attr("y2", h); //ending y value
 
-    svg.append("text")
-        .attr("class", "label")
+    svg.append("text") //this is the title of the chart
+        .attr("class", "label") //change styling in css .label{}
         .attr("x", w / 2)
         .attr("y", padding / 1.5)
         .style("text-anchor", "middle")
@@ -79,9 +80,9 @@ function makeGraph(name, dataset) {
 };
 
 function displayNum(name, dataset) {
-    var w = 400;
-    var h = 375;
-    var padding = 50;
+    var w = 400; //width of graph
+    var h = 375; //heigh of graph
+    var padding = 50; //padding
     
     var svg = d3.select(".clear")
         .append("div")
@@ -90,16 +91,16 @@ function displayNum(name, dataset) {
         .attr("width", w)
         .attr("height", h);
 
-    var rect = svg.append("rect")
+    var rect = svg.append("rect") //bounding box border
         .attr("x", 0)
         .attr("y", 0)
         .attr("width", w)
         .attr("height", h)
-        .attr("fill", (dataset < 0.9) ? "red" : "white")
-        .attr("stroke", "black")
-        .attr("stroke-width", "6px");
+        .attr("fill", "white") //color of fill
+        .attr("stroke", "black") //stroke color
+        .attr("stroke-width", "6px"); //stroke thickness
     
-    svg.append("text")
+    svg.append("text") //value
         .attr("x", w / 2)
         .attr("y", h - 250 / 2)
         .attr("font-size", "100")
@@ -108,14 +109,10 @@ function displayNum(name, dataset) {
         .style("text-anchor", "middle")
         .text(dataset);
     
-    svg.append("text")
+    svg.append("text") //title of graph
         .attr("class", "label")
         .attr("x", w / 2)
         .attr("y", padding / 1.5)
         .style("text-anchor", "middle")
         .text(name);
 };
-
-// makeGraph("NUMBER OF USERS (IN MILLIONS)", [10, 0, 0, 40, 30, 7, 8, 9]);
-// makeGraph("THE APDEX IS OFF THE ROOF", [40, 10, 10, 20, 90]);
-// displayNum("SO MUCH APDEX", 0.9);

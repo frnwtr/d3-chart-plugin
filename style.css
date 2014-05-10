@@ -30,17 +30,18 @@ line, path {
 	fill: black;
 }
 
-.wrapper {
+.wrapper { /*div that d3 happens inside of */
 	margin: 0 auto;
 	width: 900px;
 }
-.clear:after {
+
+.clear:after { /*div that d3 happens inside of */
 	content: "";
 	display: block;
 	clear: both;
 }
 
-.floating {
+.floating { /*d3 graphs are created inside divs with this class so that they float left */
 	float: left;
 	margin: 10px;
 }
